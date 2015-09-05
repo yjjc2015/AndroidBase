@@ -19,10 +19,7 @@
             
         </activity>
         <activity android:name="cl.WebView.WebViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            
         </activity>
         <activity android:name="my.demo.JavaScriptInterfaceDemoActivity">
             
@@ -32,6 +29,12 @@
         </activity>
         <activity android:name="cl.httpclient.HttpClientActivity">
             
+        </activity>
+        <activity android:name="cl.recycleview.RecyclerViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <service android:name="cl.intentService.MyIntentService"></service>
     </application>
