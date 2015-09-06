@@ -14,21 +14,24 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.MyViewHolder> {
 	
 	private LayoutInflater mInflater;
-	private List<String> mDatas;
+	private List<App> mAppList;
 	private List<Integer> mSize;
 	private int orientation;
 	private OnItemClickListener mOnItemClickListener;
 
 	static class MyViewHolder extends RecyclerView.ViewHolder {
 		TextView tv;
+		ImageView iv;
 		public MyViewHolder(View itemView) {
 			super(itemView);
 			tv = (TextView) itemView.findViewById(R.id.item_tv);
+			iv = (ImageView) itemView.findViewById(R.id.item_iv);
 		}
 	}
 	
@@ -37,12 +40,12 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.MyVi
 		void onItemLongClick(View view, int position);
 	}
 	
-	public StaggeredAdapter (Context context , List<String> datas, int orientation){
+	public StaggeredAdapter (Context context , List<App> mAppList, int orientation){
 		mInflater = LayoutInflater.from(context);
-		mDatas = datas;
+		this.mAppList = mAppList;
 		this.orientation = orientation;
 		mSize = new ArrayList<Integer>();
-		for (int i = 0; i < mDatas.size(); i++) {
+		for (int i = 0; i < mAppList.size(); i++) {
 			mSize.add((int) (100+Math.random()*300));
 		}
 	}
@@ -73,7 +76,8 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.MyVi
 			lp.height = mSize.get(position);
 		}
 		holder.itemView.setLayoutParams(lp);
-		holder.tv.setText(mDatas.get(position));
+		holder.tv.setText(mAppList.get(position).getName());
+		holder.iv.setImageDrawable(mAppList.get(position).getIcon());
 		
 		if (mOnItemClickListener != null) {
 			holder.itemView.setOnClickListener(new OnClickListener() {
@@ -94,16 +98,16 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.MyVi
 
 	@Override
 	public int getItemCount() {
-		return mDatas.size();
+		return mAppList.size();
 	}
 	
-	public void addData(int pos, String data){
-		mDatas.add(pos, data);
+	public void addData(int pos, App app){
+		mAppList.add(pos, app);
 		notifyItemInserted(pos);
 	}
 	
 	public void delData(int pos){
-		mDatas.remove(pos);
+		mAppList.remove(pos);
 		notifyItemRemoved(pos);
 	}
 }

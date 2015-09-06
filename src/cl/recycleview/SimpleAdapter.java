@@ -1,32 +1,27 @@
 package cl.recycleview;
 
 import java.util.List;
-
 import cl.intentService.R;
-
 import android.content.Context;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.MyViewHolder> {
 	private LayoutInflater mInflater;
-	private Context mContext;
-	private List<String> mDatas;
+	private List<App> mAppList;
 	private int orientation;
 	private OnItemClickListener mOnItemClickListener;
 	
-	public SimpleAdapter (Context context, List<String> datas, int orientation) {
-		this.mContext = context;
-		this.mDatas = datas;
+	public SimpleAdapter (Context context, List<App> appList, int orientation) {
+		this.mAppList = appList;
 		this.mInflater = LayoutInflater.from(context);
 		this.orientation = orientation;
 	}
@@ -37,7 +32,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.MyViewHold
 
 	@Override
 	public int getItemCount() {
-		return mDatas.size();
+		return mAppList.size();
 	}
 
 	@Override
@@ -54,7 +49,8 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.MyViewHold
 
 	@Override
 	public void onBindViewHolder(final MyViewHolder holder, int position) {
-		holder.tv.setText(mDatas.get(position));
+		holder.tv.setText(mAppList.get(position).getName());
+		holder.iv.setImageDrawable(mAppList.get(position).getIcon());
 		setUpItemEvent(holder);
 	}
 	
@@ -76,20 +72,22 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.MyViewHold
 		}
 	}
 	
-	public void addData(int pos, String data){
-		mDatas.add(pos, data);
+	public void addData(int pos, App app){
+		mAppList.add(pos, app);
 		notifyItemInserted(pos);//告诉系统：添加了一个Item
 	}
 	public void delData(int pos){
-		mDatas.remove(pos);
+		mAppList.remove(pos);
 		notifyItemRemoved(pos);
 	}
 
 	static class MyViewHolder extends ViewHolder {
 		TextView tv;
+		ImageView iv;
 		public MyViewHolder(View itemView) {
 			super(itemView);
 			tv = (TextView) itemView.findViewById(R.id.item_tv);
+			iv = (ImageView) itemView.findViewById(R.id.item_iv);
 		}
 	}
 	

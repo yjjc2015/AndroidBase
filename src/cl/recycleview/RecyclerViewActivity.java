@@ -22,9 +22,9 @@ public class RecyclerViewActivity extends Activity implements OnClickListener {
 	Button btnAdd;
 	Button btnDel;
 	
-	private List<String> mDatas;
-	private SimpleAdapter adapter;
-//	private StaggeredAdapter adapter;
+	private List<App> mAppList;
+//	private SimpleAdapter adapter;
+	private StaggeredAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,10 +37,11 @@ public class RecyclerViewActivity extends Activity implements OnClickListener {
 
 	private void initDatas() {
 		//init datas
-		mDatas = new ArrayList<String>();
-		for (int i = 'A'; i <= 'z'; i++) {
-			mDatas.add("" + (char)i);
-		}
+//		mDatas = new ArrayList<String>();
+//		for (int i = 'A'; i <= 'z'; i++) {
+//			mDatas.add("" + (char)i);
+//		}
+		mAppList = AppHelper.getLauncherApps(this.getPackageManager());
 	}
 
 	private void initViews() {
@@ -57,8 +58,8 @@ public class RecyclerViewActivity extends Activity implements OnClickListener {
 		//设置RecycleView的布局管理器
 //		layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 		//2.垂直
-		adapter = new SimpleAdapter(this, mDatas, OrientationHelper.VERTICAL);
-		layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+//		adapter = new SimpleAdapter(this, mAppList, OrientationHelper.VERTICAL);
+//		layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 		
 //		二、GridView
 		//1.水平
@@ -70,10 +71,10 @@ public class RecyclerViewActivity extends Activity implements OnClickListener {
 		
 //		三、瀑布流
 		//水平
-//		adapter = new StaggeredAdapter(this, mDatas, OrientationHelper.HORIZONTAL);
-//		layoutManager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL);
+		adapter = new StaggeredAdapter(this, mAppList, OrientationHelper.HORIZONTAL);
+		layoutManager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL);
 		//垂直
-//		adapter = new StaggeredAdapter(this, mDatas, OrientationHelper.VERTICAL);
+//		adapter = new StaggeredAdapter(this, mAppList, OrientationHelper.VERTICAL);
 //		layoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
 
 		
@@ -88,35 +89,35 @@ public class RecyclerViewActivity extends Activity implements OnClickListener {
 //		mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 		
 //		六、监听Item点击和长按事件
-		adapter.setmOnItemClickListener(new SimpleAdapter.OnItemClickListener() {
-			@Override
-			public void onItemLongClick(View view, int position) {
-				Toast.makeText(RecyclerViewActivity.this, "长按了"+position, Toast.LENGTH_SHORT).show();
-				adapter.delData(position);
-			}
-			@Override
-			public void onItemClick(View view, int position) {
-				Toast.makeText(RecyclerViewActivity.this, "点击了"+position, Toast.LENGTH_SHORT).show();
-			}
-		});
-//		adapter.setmOnItemClickListener(new StaggeredAdapter.OnItemClickListener() {
+//		adapter.setmOnItemClickListener(new SimpleAdapter.OnItemClickListener() {
 //			@Override
 //			public void onItemLongClick(View view, int position) {
 //				Toast.makeText(RecyclerViewActivity.this, "长按了"+position, Toast.LENGTH_SHORT).show();
-//				adapter.delData(position);
+//				startActivity(mAppList.get(position).getIntent());
 //			}
 //			@Override
 //			public void onItemClick(View view, int position) {
-//				Toast.makeText(RecyclerViewActivity.this, "点击了"+position, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(RecyclerViewActivity.this, "点击了"+mAppList.get(position).getName(), Toast.LENGTH_SHORT).show();
 //			}
 //		});
+		adapter.setmOnItemClickListener(new StaggeredAdapter.OnItemClickListener() {
+			@Override
+			public void onItemLongClick(View view, int position) {
+				Toast.makeText(RecyclerViewActivity.this, "长按了"+position, Toast.LENGTH_SHORT).show();
+				startActivity(mAppList.get(position).getIntent());
+			}
+			@Override
+			public void onItemClick(View view, int position) {
+				Toast.makeText(RecyclerViewActivity.this, "点击了"+mAppList.get(position).getName(), Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btnAdd:
-			adapter.addData(1, "insert one");
+			adapter.addData(mAppList.size()-1, mAppList.get(0));
 			break;
 		case R.id.btnDel:
 			adapter.delData(3);

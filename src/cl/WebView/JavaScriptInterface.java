@@ -5,9 +5,11 @@ import android.widget.Toast;
 
 public class JavaScriptInterface {
 	Context mContext;
+	
 	public JavaScriptInterface(Context c) {
 		mContext = c;
 	}			
+//	@Ja
 	public void showToast(String info){
 		Toast.makeText(mContext, info, Toast.LENGTH_LONG).show();
 	}
