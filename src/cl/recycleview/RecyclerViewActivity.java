@@ -23,8 +23,8 @@ public class RecyclerViewActivity extends Activity implements OnClickListener {
 	Button btnDel;
 	
 	private List<App> mAppList;
-//	private SimpleAdapter adapter;
-	private StaggeredAdapter adapter;
+	private SimpleAdapter adapter;
+//	private StaggeredAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,13 @@ public class RecyclerViewActivity extends Activity implements OnClickListener {
 		btnAdd.setOnClickListener(this);
 		btnDel.setOnClickListener(this);
 		
+		//边界回弹效果
+		mRecyclerView.setOverScrollMode(View.OVER_SCROLL_NEVER);//消除边界回弹效果
+//		mRecyclerView.setOverScrollMode(View.OVER_SCROLL_IF_CONTENT_SCROLLS);//当内容长度等于/超过View的长度，才有这个效果
+//		mRecyclerView.setOverScrollMode(View.OVER_SCROLL_ALWAYS);//缺省值，一直都有这个效果
+		
+		mRecyclerView.setFadingEdgeLength(0);
+		
 		LayoutManager layoutManager = null;
 //		一、ListView
 		//1.水平
@@ -58,8 +65,8 @@ public class RecyclerViewActivity extends Activity implements OnClickListener {
 		//设置RecycleView的布局管理器
 //		layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 		//2.垂直
-//		adapter = new SimpleAdapter(this, mAppList, OrientationHelper.VERTICAL);
-//		layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+		adapter = new SimpleAdapter(this, mAppList, OrientationHelper.VERTICAL);
+		layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 		
 //		二、GridView
 		//1.水平
@@ -71,8 +78,8 @@ public class RecyclerViewActivity extends Activity implements OnClickListener {
 		
 //		三、瀑布流
 		//水平
-		adapter = new StaggeredAdapter(this, mAppList, OrientationHelper.HORIZONTAL);
-		layoutManager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL);
+//		adapter = new StaggeredAdapter(this, mAppList, OrientationHelper.HORIZONTAL);
+//		layoutManager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL);
 		//垂直
 //		adapter = new StaggeredAdapter(this, mAppList, OrientationHelper.VERTICAL);
 //		layoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
@@ -89,18 +96,7 @@ public class RecyclerViewActivity extends Activity implements OnClickListener {
 //		mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 		
 //		六、监听Item点击和长按事件
-//		adapter.setmOnItemClickListener(new SimpleAdapter.OnItemClickListener() {
-//			@Override
-//			public void onItemLongClick(View view, int position) {
-//				Toast.makeText(RecyclerViewActivity.this, "长按了"+position, Toast.LENGTH_SHORT).show();
-//				startActivity(mAppList.get(position).getIntent());
-//			}
-//			@Override
-//			public void onItemClick(View view, int position) {
-//				Toast.makeText(RecyclerViewActivity.this, "点击了"+mAppList.get(position).getName(), Toast.LENGTH_SHORT).show();
-//			}
-//		});
-		adapter.setmOnItemClickListener(new StaggeredAdapter.OnItemClickListener() {
+		adapter.setmOnItemClickListener(new SimpleAdapter.OnItemClickListener() {
 			@Override
 			public void onItemLongClick(View view, int position) {
 				Toast.makeText(RecyclerViewActivity.this, "长按了"+position, Toast.LENGTH_SHORT).show();
@@ -111,6 +107,17 @@ public class RecyclerViewActivity extends Activity implements OnClickListener {
 				Toast.makeText(RecyclerViewActivity.this, "点击了"+mAppList.get(position).getName(), Toast.LENGTH_SHORT).show();
 			}
 		});
+//		adapter.setmOnItemClickListener(new StaggeredAdapter.OnItemClickListener() {
+//			@Override
+//			public void onItemLongClick(View view, int position) {
+//				Toast.makeText(RecyclerViewActivity.this, "长按了"+position, Toast.LENGTH_SHORT).show();
+//				startActivity(mAppList.get(position).getIntent());
+//			}
+//			@Override
+//			public void onItemClick(View view, int position) {
+//				Toast.makeText(RecyclerViewActivity.this, "点击了"+mAppList.get(position).getName(), Toast.LENGTH_SHORT).show();
+//			}
+//		});
 	}
 
 	@Override

@@ -44,7 +44,6 @@ public class HttpClientActivity extends Activity {
 				handler.sendMessage(msg);
 			}
 		})
-//		;
 		.start();
 	}
 	

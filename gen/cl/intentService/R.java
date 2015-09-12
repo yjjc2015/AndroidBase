@@ -18,33 +18,66 @@ public final class R {
     }
     public static final class drawable {
         public static final int divider_list=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int item_bg=0x7f020002;
+        public static final int ic_iwork_add=0x7f020001;
+        public static final int ic_iwork_addnote=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int item_bg=0x7f020004;
     }
     public static final class id {
-        public static final int btnAdd=0x7f070002;
-        public static final int btnDel=0x7f070003;
-        public static final int item_iv=0x7f07000a;
-        public static final int item_tv=0x7f070009;
-        public static final int recycleView=0x7f070004;
-        public static final int startIntentService=0x7f070001;
-        public static final int textView1=0x7f07000c;
-        public static final int tv_httpclient=0x7f070000;
-        public static final int webView=0x7f070005;
-        public static final int webView1=0x7f07000b;
-        public static final int wv1=0x7f070006;
-        public static final int wv2=0x7f070007;
-        public static final int wv3=0x7f070008;
+        public static final int btnAdd=0x7f070013;
+        public static final int btnDel=0x7f070014;
+        public static final int btn_back=0x7f07001e;
+        public static final int btn_file=0x7f07000d;
+        public static final int btn_refresh=0x7f07001c;
+        public static final int button=0x7f070012;
+        public static final int et_file=0x7f07000c;
+        public static final int id_ball=0x7f070010;
+        public static final int id_time=0x7f070016;
+        public static final int id_tv=0x7f070017;
+        public static final int imageView=0x7f070011;
+        public static final int imageView_0=0x7f07000b;
+        public static final int imageView_1=0x7f070002;
+        public static final int imageView_2=0x7f070003;
+        public static final int imageView_3=0x7f070004;
+        public static final int imageView_4=0x7f070005;
+        public static final int imageView_5=0x7f070006;
+        public static final int imageView_6=0x7f070007;
+        public static final int imageView_7=0x7f070008;
+        public static final int imageView_8=0x7f070009;
+        public static final int imageView_9=0x7f07000a;
+        public static final int item_iv=0x7f070021;
+        public static final int item_tv=0x7f070020;
+        public static final int layout_alertDialog=0x7f070000;
+        public static final int recycleView=0x7f070015;
+        public static final int startIntentService=0x7f07000f;
+        public static final int textView1=0x7f070023;
+        public static final int tv_alertDialog=0x7f070001;
+        public static final int tv_httpclient=0x7f07000e;
+        public static final int tv_wv2=0x7f07001d;
+        public static final int webView=0x7f070018;
+        public static final int webView1=0x7f070022;
+        public static final int webView2=0x7f07001f;
+        public static final int wv1=0x7f070019;
+        public static final int wv2=0x7f07001a;
+        public static final int wv3=0x7f07001b;
     }
     public static final class layout {
-        public static final int activity_httpclient=0x7f030000;
-        public static final int activity_intentservice=0x7f030001;
-        public static final int activity_recycleview=0x7f030002;
-        public static final int activity_webview=0x7f030003;
-        public static final int activity_webview1=0x7f030004;
-        public static final int item_hor_single_textview=0x7f030005;
-        public static final int item_single_textview=0x7f030006;
-        public static final int main=0x7f030007;
+        public static final int activity_alertdialog=0x7f030000;
+        public static final int activity_complexanimator=0x7f030001;
+        public static final int activity_file=0x7f030002;
+        public static final int activity_httpclient=0x7f030003;
+        public static final int activity_intentservice=0x7f030004;
+        public static final int activity_objectanimator=0x7f030005;
+        public static final int activity_oldanimation=0x7f030006;
+        public static final int activity_recycleview=0x7f030007;
+        public static final int activity_timepickerdialog=0x7f030008;
+        public static final int activity_valueandtypeanimation=0x7f030009;
+        public static final int activity_webview=0x7f03000a;
+        public static final int activity_webview1=0x7f03000b;
+        public static final int activity_webview2=0x7f03000c;
+        public static final int item_hor_single_textview=0x7f03000d;
+        public static final int item_single_textview=0x7f03000e;
+        public static final int main=0x7f03000f;
     }
     public static final class string {
         public static final int action_gridview=0x7f050004;
@@ -74,5 +107,6 @@ public final class R {
          */
         public static final int AppTheme=0x7f060001;
         public static final int match=0x7f060002;
+        public static final int wrap=0x7f060003;
     }
 }

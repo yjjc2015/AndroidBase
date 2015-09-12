@@ -7,6 +7,8 @@ import android.webkit.WebView;
 
 /**
  *	This is main WebView Activity
+ *	192.168.100.7:80	家里
+ *	
  */
 public class WebViewActivity extends Activity {
 	private WebView webView;
@@ -25,8 +27,8 @@ public class WebViewActivity extends Activity {
 		
 		webView.addJavascriptInterface(new JavaScriptInterface(this), "Android");
 		
-//		webView.loadUrl("file:///android_asset/www/index.html");
-		webView.loadUrl(myWebPageUrl);
+		webView.loadUrl("file:///android_asset/www/index.html");
+//		webView.loadUrl(myWebPageUrl);
 		
 		//add this,when you link a new webpage,it will be in webView
 //		webView.setWebViewClient(new WebViewClient());
